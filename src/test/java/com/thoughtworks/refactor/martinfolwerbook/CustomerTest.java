@@ -104,6 +104,24 @@ public class CustomerTest {
 
     }
 
+    @Test
+    public void should_return_html_statement_for_all_kinds_of_movie() {
+        Rental rentalForRegularMovie = new Rental(regularMovie, 3);
+        Rental rentalForNewReleaseMovie = new Rental(newRleaseMovie, 3);
+        Rental rentalForChildrenMovie = new Rental(childrenMovie, 3);
+        customer.addRental(rentalForRegularMovie);
+        customer.addRental(rentalForNewReleaseMovie);
+        customer.addRental(rentalForChildrenMovie);
+
+        assertThat(customer.htmlStatement(), is("<H1>Rentals for <EM>zhangyi</EM></H1 ><P >\n" +
+                " Brave Heart: 3.5<BR>\n" +
+                "Iron Man: 9.0<BR>\n" +
+                "Kongfu Panda: 1.5<BR>\n" +
+                "<P>You owe <EM>14.0</EM><P>\n" +
+                "On this rental you earned <EM>4</EM> frequent renter points<P>"));
+
+    }
+
     private String result(String customerName, String movieName, double totalAmout, int frequentRenterPoints) {
         return String.format("Rental Record for %s\n\t" +
                 "%s\t%s\nAmount owed is %s\n" +
