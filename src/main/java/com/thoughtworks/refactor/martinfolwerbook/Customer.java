@@ -29,14 +29,23 @@ class Customer {
 
             //show figures
             result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(rental.getCharge()) + "\n";
-            totalAmount += rental.getCharge();
         }
+
+        totalAmount = getTotalCharge();
 
         //add footer lines
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) +
                 " frequent renter points";
         return result;
+    }
+
+    private double getTotalCharge() {
+        double totalAmount = 0;
+        for (Rental rental : rentals) {
+            totalAmount += rental.getCharge();
+        }
+        return totalAmount;
     }
 
 }
