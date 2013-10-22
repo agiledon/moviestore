@@ -7,8 +7,6 @@ public class NewReleasePrice extends Price {
     }
 
     public double getCharge(int daysRented) {
-        double result = 0;
-        result += daysRented * 3;
-        return result;
+        return daysRented * 3;
     }
 }
