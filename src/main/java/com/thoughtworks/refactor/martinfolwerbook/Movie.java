@@ -38,6 +38,10 @@ public class Movie {
     }
 
     public double getCharge(int daysRented) {
+        return getChargeForPrice(daysRented);
+    }
+
+    private double getChargeForPrice(int daysRented) {
         double result = 0;
         //determine amounts for aRental line
         switch (this.getPriceCode()) {
@@ -70,6 +74,4 @@ public class Movie {
         }
         return frequentRenterPoints;
     }
-
-    ;
 }
