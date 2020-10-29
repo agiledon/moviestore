@@ -25,4 +25,24 @@ public class Movie {
         return title;
     }
 
+    public double amountFor(int days) {
+        double thisAmount = 0;
+        switch (priceCode) {
+            case REGULAR:
+                thisAmount += 2;
+                if (days > 2) {
+                    thisAmount += (days - 2) * 1.5;
+                }
+                break;
+            case NEW_RELEASE:
+                thisAmount += days * 3;
+                break;
+            case CHILDREN:
+                thisAmount += 1.5;
+                if (days > 3)
+                    thisAmount += (days - 3) * 1.5;
+                break;
+        }
+        return thisAmount;
+    }
 }
