@@ -19,10 +19,12 @@ class Customer {
         return name;
     }
 
+
+    //message chain
     public String statement() {
         String result = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentals) {
-            result += "\t" + rental.getMovie().getTitle() + "\t" + rental.amountFor() + "\n";
+            result += "\t" + rental.getMovieTitle() + "\t" + rental.amountFor() + "\n";
         }
         result += "Amount owed is " + totalAmount() + "\n";
         result += "You earned " + totalPoints() +

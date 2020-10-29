@@ -9,10 +9,6 @@ class Rental {
         this.daysRented = daysRented;
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
-
     public double amountFor() {
         return movie.amountFor(this.daysRented);
     }
@@ -21,4 +17,7 @@ class Rental {
         return movie.pointsFor(this.daysRented);
     }
 
+    public String getMovieTitle() {
+        return movie.getTitle();
+    }
 }
