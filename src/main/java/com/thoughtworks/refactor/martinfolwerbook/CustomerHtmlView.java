@@ -6,7 +6,18 @@ public class CustomerHtmlView extends CustomerView {
     }
 
     @Override
-    public String statement() {
+    protected String statementHeader() {
         return null;
     }
+
+    @Override
+    protected String statementFigure(String result, Rental rental) {
+        return null;
+    }
+
+    @Override
+    protected String statementFooter(String result) {
+        return null;
+    }
+
 }
