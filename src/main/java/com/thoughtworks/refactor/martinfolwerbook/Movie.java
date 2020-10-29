@@ -13,10 +13,6 @@ public class Movie {
         this.priceCode = priceCode;
     }
 
-    public int getPriceCode() {
-        return priceCode;
-    }
-
     public void setPriceCode(int arg) {
         priceCode = arg;
     }
@@ -44,5 +40,14 @@ public class Movie {
                 break;
         }
         return thisAmount;
+    }
+
+    public int pointsFor(int days) {
+        int frequentRenterPoints = 1;
+        if ((priceCode == NEW_RELEASE)
+                &&
+                days > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
     }
 }
