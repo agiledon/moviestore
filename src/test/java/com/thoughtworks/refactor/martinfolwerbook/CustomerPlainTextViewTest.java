@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-public class CustomerViewTest {
+public class CustomerPlainTextViewTest {
 
     public static final String REGULAR_MOVIE_NAME = "Brave Heart";
     public static final String NEW_RELEASE_MOVIE_NAME = "Iron Man";
@@ -21,7 +21,7 @@ public class CustomerViewTest {
     public void setUp() throws Exception {
         regularMovie = new Movie(REGULAR_MOVIE_NAME, 0);
         customer = new Customer(CUSOMTER_NAME);
-        customerView = new CustomerView(customer);
+        customerView = new CustomerPlainTextView(customer);
         newRleaseMovie = new Movie(NEW_RELEASE_MOVIE_NAME, 1);
         childrenMovie = new Movie(CHILDREN_MOVIE, 2);
     }
