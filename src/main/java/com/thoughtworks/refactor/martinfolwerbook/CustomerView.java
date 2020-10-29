@@ -2,23 +2,24 @@ package com.thoughtworks.refactor.martinfolwerbook;
 
 public abstract class CustomerView {
     protected final Customer customer;
+    protected StringBuffer result = new StringBuffer();
 
     public CustomerView(Customer customer) {
         this.customer = customer;
     }
 
     public final String statement() {
-        String result = statementHeader();
+        result.append(statementHeader());
         for (Rental rental : customer.getRentals()) {
-            result = statementFigure(result, rental);
+            result.append(statementFigure(rental));
         }
-        result = statementFooter(result);
-        return result;
+        result.append(statementFooter());
+        return result.toString();
     }
 
     protected abstract String statementHeader();
 
-    protected abstract String statementFigure(String result, Rental rental);
+    protected abstract String statementFigure(Rental rental);
 
-    protected abstract String statementFooter(String result);
+    protected abstract String statementFooter();
 }

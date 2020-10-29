@@ -8,23 +8,18 @@ public class CustomerPlainTextView extends CustomerView {
 
     @Override
     protected String statementHeader() {
-        //header
-        return "Rental Record for " + customer.getName() + "\n";
+        return String.format("Rental Record for %s\n", customer.getName());
     }
 
     @Override
-    protected String statementFigure(String result, Rental rental) {
-        //figure
-        result += "\t" + rental.getMovieTitle() + "\t" + rental.amountFor() + "\n";
-        return result;
+    protected String statementFigure(Rental rental) {
+        return String.format("\t%s\t%s\n", rental.getMovieTitle(), rental.amountFor());
     }
 
     @Override
-    protected String statementFooter(String result) {
-        //footer
-        result += "Amount owed is " + customer.totalAmount() + "\n";
-        result += "You earned " + customer.totalPoints() +
-                " frequent renter points";
-        return result;
+    protected String statementFooter() {
+        return String.format("Amount owed is %s\nYou earned %s frequent renter points",
+                customer.totalAmount(),
+                customer.totalPoints());
     }
 }

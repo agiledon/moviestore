@@ -11,12 +11,12 @@ public class CustomerHtmlView extends CustomerView {
     }
 
     @Override
-    protected String statementFigure(String result, Rental rental) {
+    protected String statementFigure(Rental rental) {
         return null;
     }
 
     @Override
-    protected String statementFooter(String result) {
+    protected String statementFooter() {
         return null;
     }
 
