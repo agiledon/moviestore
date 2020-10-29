@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-public class CustomerTest {
+public class CustomerViewTest {
 
     public static final String REGULAR_MOVIE_NAME = "Brave Heart";
     public static final String NEW_RELEASE_MOVIE_NAME = "Iron Man";
@@ -15,11 +15,13 @@ public class CustomerTest {
     private Customer customer;
     private Movie newRleaseMovie;
     private Movie childrenMovie;
+    private CustomerView customerView;
 
     @Before
     public void setUp() throws Exception {
         regularMovie = new Movie(REGULAR_MOVIE_NAME, 0);
         customer = new Customer(CUSOMTER_NAME);
+        customerView = new CustomerView(customer);
         newRleaseMovie = new Movie(NEW_RELEASE_MOVIE_NAME, 1);
         childrenMovie = new Movie(CHILDREN_MOVIE, 2);
     }
@@ -27,12 +29,11 @@ public class CustomerTest {
     @Test
     public void should_statement_for_regular_movie_and_rental_days_less_than_or_equal_to_2() {
         Rental rental = new Rental(regularMovie, 2);
-        Customer customer = new Customer(CUSOMTER_NAME);
         customer.addRental(rental);
 
         double expectedTotalAmount = 2.0;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
+        assertThat(customerView.statement()).isEqualTo(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -42,7 +43,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 3.5;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
+        assertThat(customerView.statement()).isEqualTo(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -52,7 +53,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 3.0;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
+        assertThat(customerView.statement()).isEqualTo(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -62,7 +63,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 9.0;
         int expectedFrequentRenterPoints = 2;
-        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
+        assertThat(customerView.statement()).isEqualTo(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -72,7 +73,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 1.5;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints));
+        assertThat(customerView.statement()).isEqualTo(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -82,7 +83,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 3.0;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints));
+        assertThat(customerView.statement()).isEqualTo(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -94,7 +95,7 @@ public class CustomerTest {
         customer.addRental(rentalForNewReleaseMovie);
         customer.addRental(rentalForChildrenMovie);
 
-        assertThat(customer.statement()).isEqualTo("Rental Record for zhangyi\n\t" +
+        assertThat(customerView.statement()).isEqualTo("Rental Record for zhangyi\n\t" +
                 "Brave Heart\t3.5\n" +
                 "\tIron Man\t9.0\n" +
                 "\tKongfu Panda\t1.5\n" +
