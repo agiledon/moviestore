@@ -3,8 +3,7 @@ package com.thoughtworks.refactor.martinfolwerbook;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class CustomerTest {
 
@@ -33,7 +32,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 2.0;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement(), is(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints)));
+        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -43,7 +42,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 3.5;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement(), is(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints)));
+        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, REGULAR_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -53,7 +52,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 3.0;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement(), is(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints)));
+        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -63,7 +62,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 9.0;
         int expectedFrequentRenterPoints = 2;
-        assertThat(customer.statement(), is(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints)));
+        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, NEW_RELEASE_MOVIE_NAME, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -73,7 +72,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 1.5;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement(), is(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints)));
+        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -83,7 +82,7 @@ public class CustomerTest {
 
         double expectedTotalAmount = 3.0;
         int expectedFrequentRenterPoints = 1;
-        assertThat(customer.statement(), is(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints)));
+        assertThat(customer.statement()).isEqualTo(result(CUSOMTER_NAME, CHILDREN_MOVIE, expectedTotalAmount, expectedFrequentRenterPoints));
     }
 
     @Test
@@ -95,12 +94,12 @@ public class CustomerTest {
         customer.addRental(rentalForNewReleaseMovie);
         customer.addRental(rentalForChildrenMovie);
 
-        assertThat(customer.statement(), is("Rental Record for zhangyi\n\t" +
+        assertThat(customer.statement()).isEqualTo("Rental Record for zhangyi\n\t" +
                 "Brave Heart\t3.5\n" +
                 "\tIron Man\t9.0\n" +
                 "\tKongfu Panda\t1.5\n" +
                 "Amount owed is 14.0\n" +
-                "You earned 4 frequent renter points"));
+                "You earned 4 frequent renter points");
 
     }
 
@@ -113,12 +112,12 @@ public class CustomerTest {
         customer.addRental(rentalForNewReleaseMovie);
         customer.addRental(rentalForChildrenMovie);
 
-        assertThat(customer.htmlStatement(), is("<H1>Rentals for <EM>zhangyi</EM></H1 ><P >\n" +
+        assertThat(customer.htmlStatement()).isEqualTo("<H1>Rentals for <EM>zhangyi</EM></H1 ><P >\n" +
                 " Brave Heart: 3.5<BR>\n" +
                 "Iron Man: 9.0<BR>\n" +
                 "Kongfu Panda: 1.5<BR>\n" +
                 "<P>You owe <EM>14.0</EM><P>\n" +
-                "On this rental you earned <EM>4</EM> frequent renter points<P>"));
+                "On this rental you earned <EM>4</EM> frequent renter points<P>");
 
     }
 
