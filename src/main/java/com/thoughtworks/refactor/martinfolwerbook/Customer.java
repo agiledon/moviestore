@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Customer {
+    private final CustomerView customerView = new CustomerView(this);
     private String name;
     private List<Rental> rentals = new ArrayList<Rental>();
 
@@ -15,24 +16,12 @@ class Customer {
         rentals.add(arg);
     }
 
-    public String getName() {
-        return name;
-    }
 
-
-    //message chain
     public String statement() {
-        String result = "Rental Record for " + getName() + "\n";
-        for (Rental rental : rentals) {
-            result += "\t" + rental.getMovieTitle() + "\t" + rental.amountFor() + "\n";
-        }
-        result += "Amount owed is " + totalAmount() + "\n";
-        result += "You earned " + totalPoints() +
-                " frequent renter points";
-        return result;
+        return customerView.statement();
     }
 
-    private int totalPoints() {
+    public int totalPoints() {
         int frequentRenterPoints = 0;
         for (Rental rental : rentals) {
             frequentRenterPoints += rental.pointsFor();
@@ -40,7 +29,7 @@ class Customer {
         return frequentRenterPoints;
     }
 
-    private double totalAmount() {
+    public double totalAmount() {
         double totalAmount = 0;
         for (Rental rental : rentals) {
             double thisAmount = rental.amountFor();
@@ -49,4 +38,11 @@ class Customer {
         return totalAmount;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public List<Rental> getRentals() {
+        return this.rentals;
+    }
 }
