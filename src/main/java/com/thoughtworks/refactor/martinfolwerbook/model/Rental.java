@@ -1,6 +1,6 @@
-package com.thoughtworks.refactor.martinfolwerbook;
+package com.thoughtworks.refactor.martinfolwerbook.model;
 
-class Rental {
+public class Rental {
     private Movie movie;
     private int daysRented;
 

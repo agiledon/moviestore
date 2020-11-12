@@ -1,9 +1,9 @@
-package com.thoughtworks.refactor.martinfolwerbook;
+package com.thoughtworks.refactor.martinfolwerbook.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Customer {
+public class Customer {
     private String name;
     private List<Rental> rentals = new ArrayList<Rental>();
 

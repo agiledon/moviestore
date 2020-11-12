@@ -1,4 +1,4 @@
-package com.thoughtworks.refactor.martinfolwerbook;
+package com.thoughtworks.refactor.martinfolwerbook.model;
 
 public class Movie {
     public static final int REGULAR = 0;

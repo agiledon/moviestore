@@ -1,4 +1,7 @@
-package com.thoughtworks.refactor.martinfolwerbook;
+package com.thoughtworks.refactor.martinfolwerbook.view;
+
+import com.thoughtworks.refactor.martinfolwerbook.model.Customer;
+import com.thoughtworks.refactor.martinfolwerbook.model.Rental;
 
 public abstract class CustomerView {
     protected final Customer customer;

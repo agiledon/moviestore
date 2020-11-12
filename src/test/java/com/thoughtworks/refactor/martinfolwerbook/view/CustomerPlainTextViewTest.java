@@ -1,5 +1,10 @@
-package com.thoughtworks.refactor.martinfolwerbook;
+package com.thoughtworks.refactor.martinfolwerbook.view;
 
+import com.thoughtworks.refactor.martinfolwerbook.model.Customer;
+import com.thoughtworks.refactor.martinfolwerbook.model.Movie;
+import com.thoughtworks.refactor.martinfolwerbook.model.Rental;
+import com.thoughtworks.refactor.martinfolwerbook.view.CustomerPlainTextView;
+import com.thoughtworks.refactor.martinfolwerbook.view.CustomerView;
 import org.junit.Before;
 import org.junit.Test;
 
