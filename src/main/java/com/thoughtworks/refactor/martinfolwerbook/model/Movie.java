@@ -22,22 +22,33 @@ public class Movie {
     }
 
     public double amountFor(int days) {
-        double thisAmount = 0;
         switch (priceCode) {
             case REGULAR:
-                thisAmount += 2;
-                if (days > 2) {
-                    thisAmount += (days - 2) * 1.5;
-                }
-                break;
+                return amountForRegular(days);
             case NEW_RELEASE:
-                thisAmount += days * 3;
-                break;
+                return amountForNewRelease(days);
             case CHILDREN:
-                thisAmount += 1.5;
-                if (days > 3)
-                    thisAmount += (days - 3) * 1.5;
-                break;
+                return amountForChild(days);
+        }
+        return (double) 0;
+    }
+
+    private double amountForChild(int days) {
+        double thisAmount = 1.5;
+        if (days > 3)
+            thisAmount += (days - 3) * 1.5;
+        return thisAmount;
+    }
+
+    private double amountForNewRelease(int days) {
+        double thisAmount = days * 3;
+        return thisAmount;
+    }
+
+    private double amountForRegular(int days) {
+        double thisAmount = 2;
+        if (days > 2) {
+            thisAmount += (days - 2) * 1.5;
         }
         return thisAmount;
     }
