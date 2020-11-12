@@ -4,6 +4,9 @@ public class Movie {
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
     public static final int CHILDREN = 2;
+    private final PriceCode regularPriceCode = new RegularPriceCode();
+    private final NewReleasePriceCode newReleasePriceCode = new NewReleasePriceCode();
+    private final ChildPriceCode childPriceCode = new ChildPriceCode();
 
     private String title;
     private int priceCode;
@@ -21,36 +24,17 @@ public class Movie {
         return title;
     }
 
+    // 差异式编程: Programming by Difference
     public double amountFor(int days) {
         switch (priceCode) {
             case REGULAR:
-                return amountForRegular(days);
+                return regularPriceCode.amountFor(days);
             case NEW_RELEASE:
-                return amountForNewRelease(days);
+                return newReleasePriceCode.amountFor(days);
             case CHILDREN:
-                return amountForChild(days);
+                return childPriceCode.amountFor(days);
         }
         return (double) 0;
-    }
-
-    private double amountForChild(int days) {
-        double thisAmount = 1.5;
-        if (days > 3)
-            thisAmount += (days - 3) * 1.5;
-        return thisAmount;
-    }
-
-    private double amountForNewRelease(int days) {
-        double thisAmount = days * 3;
-        return thisAmount;
-    }
-
-    private double amountForRegular(int days) {
-        double thisAmount = 2;
-        if (days > 2) {
-            thisAmount += (days - 2) * 1.5;
-        }
-        return thisAmount;
     }
 
     public int pointsFor(int days) {
