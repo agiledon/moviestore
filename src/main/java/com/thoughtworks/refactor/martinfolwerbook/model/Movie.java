@@ -5,19 +5,19 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
     public static final int CHILDREN = 2;
     private final PriceCode regularPriceCode = new RegularPriceCode();
-    private final NewReleasePriceCode newReleasePriceCode = new NewReleasePriceCode();
-    private final ChildPriceCode childPriceCode = new ChildPriceCode();
+    private final PriceCode newReleasePriceCode = new NewReleasePriceCode();
+    private final PriceCode childPriceCode = new ChildrenPriceCode();
 
     private String title;
-    private int priceCode;
+    private int priceCodeType;
 
-    public Movie(String title, int priceCode) {
+    public Movie(String title, int priceCodeType) {
         this.title = title;
-        this.priceCode = priceCode;
+        this.priceCodeType = priceCodeType;
     }
 
-    public void setPriceCode(int arg) {
-        priceCode = arg;
+    public void setPriceCodeType(int arg) {
+        priceCodeType = arg;
     }
 
     public String getTitle() {
@@ -26,23 +26,31 @@ public class Movie {
 
     // 差异式编程: Programming by Difference
     public double amountFor(int days) {
-        switch (priceCode) {
+        PriceCode priceCode = createPriceCode();
+        return priceCode.amountFor(days);
+    }
+
+    private PriceCode createPriceCode() {
+        PriceCode priceCode;
+        switch (priceCodeType) {
             case REGULAR:
-                return regularPriceCode.amountFor(days);
+                priceCode = new RegularPriceCode();
+                break;
             case NEW_RELEASE:
-                return newReleasePriceCode.amountFor(days);
+                priceCode = new NewReleasePriceCode();
+                break;
             case CHILDREN:
-                return childPriceCode.amountFor(days);
+                priceCode = new ChildrenPriceCode();
+                break;
+            default:
+                priceCode = new DefaultPriceCode();
         }
-        return (double) 0;
+        return priceCode;
     }
 
     public int pointsFor(int days) {
-        int frequentRenterPoints = 1;
-        if ((priceCode == NEW_RELEASE)
-                &&
-                days > 1)
-            frequentRenterPoints++;
-        return frequentRenterPoints;
+        PriceCode priceCode = createPriceCode();
+        return priceCode.points(days);
     }
+
 }

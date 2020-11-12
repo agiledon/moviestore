@@ -1,7 +1,7 @@
 package com.thoughtworks.refactor.martinfolwerbook.model;
 
-public class ChildPriceCode extends PriceCode {
-    public ChildPriceCode() {
+public class ChildrenPriceCode extends PriceCode {
+    public ChildrenPriceCode() {
     }
 
     @Override
